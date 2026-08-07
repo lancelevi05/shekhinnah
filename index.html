@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Mart Online — Banner</title>
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"> -->
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.cdnfonts.com/css/magnolia-script" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Playfair+Display:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --maroon-dark: #3a0d16;
+            --maroon: #5c1622;
+            --maroon-light: #7a2231;
+            --gold: #c9a13b;
+            --gold-light: #EEBC45;
+            --cream: #f7efe1;
+            --cream-soft: #f3e8d6;
+            --white: #FFF5E6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color:#FFF5E6;
+            font-family: 'Poppins', sans-serif;
+         
+            display: flex;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .banner {
+            width: 100%;
+            background-color:#262524;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(58, 13, 22, 0.25);
+            position: relative;
+        }
+
+        /* .banner-top {
+            display: grid;
+            grid-template-columns: 300px 1fr 340px;
+            min-height: 340px;
+        } */
+
+        .banner-top {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            min-height: 500px;
+        }
+
+        /* ---------- LEFT PANEL ---------- */
+        .left-panel {
+            /* background: linear-gradient(160deg, var(--maroon-dark) 0%, var(--maroon) 55%, var(--maroon-light) 100%); */
+            background-color:#A2171A;
+            color: var(--cream);
+            padding: 34px 28px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+            height: 500px;
+        }
+
+        .left-panel::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 90% 10%, rgba(201, 161, 59, 0.18), transparent 40%),
+                radial-gradient(circle at 10% 90%, rgba(201, 161, 59, 0.14), transparent 45%);
+            pointer-events: none;
+        }
+
+        .eyebrow {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            line-height: 1.15;
+            font-weight: 700;
+        }
+
+        .eyebrow span {
+            display: block;
+            color: var(--gold-light);
+            font-style: italic;
+        }
+
+        .feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .feature {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            flex: 0 0 auto;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--maroon-dark);
+            font-size: 16px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+        }
+
+        .feature-text h4 {
+            font-size: 13px;
+            letter-spacing: 0.3px;
+            margin-bottom: 2px;
+            font-weight: 700;
+        }
+
+        .feature-text p {
+            font-size: 11.5px;
+            color: var(--cream-soft);
+            line-height: 1.35;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        /* ---------- CENTER LOGO ---------- */
+        .center-panel {
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+
+        .logo-badge {
+            width: 230px;
+            height: 230px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            outline: 1px solid var(--gold);
+            outline-offset: 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 18px;
+            background: var(--cream);
+        }
+
+        .bag-icon {
+            width: 46px;
+            height: 40px;
+            background: var(--maroon);
+            border-radius: 6px 6px 10px 10px;
+            position: relative;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bag-icon::before {
+            content: "";
+            position: absolute;
+            top: -14px;
+            width: 22px;
+            height: 18px;
+            border: 3px solid var(--gold);
+            border-bottom: none;
+            border-radius: 14px 14px 0 0;
+        }
+
+        .bag-icon .heart {
+            color: var(--gold);
+            font-size: 14px;
+        }
+
+        .logo-badge h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 23px;
+            color: var(--maroon-dark);
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-badge h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 11px;
+            letter-spacing: 5px;
+            color: var(--gold);
+            font-weight: 600;
+            margin: 2px 0 10px;
+        }
+
+        .logo-badge .divider {
+            width: 26px;
+            height: 2px;
+            background: var(--gold);
+            margin: 0 auto 10px;
+        }
+
+        .logo-badge .tagline {
+            font-size: 11px;
+            color: var(--maroon);
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        /* ---------- RIGHT IMAGE PANEL ---------- */
+
+
+
+        .right-panel {
+
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+
+            /* Background image */
+            background-image: url("img/balay2.jpeg");
+            background-repeat: no-repeat;
+
+            /* Start around the center and extend to the right */
+            background-position: center right;
+
+            /* Adjust as needed */
+            background-size: contain;
+
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            padding: 14px;
+        }
+
+        .image-slot {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--maroon-light);
+            text-align: center;
+            font-size: 12.5px;
+            line-height: 1.5;
+            padding: 20px;
+            border: 2px dashed var(--gold);
+            margin: 14px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+        .image-slot strong {
+            /* display:block; */
+            font-family: 'Playfair Display', serif;
+            font-size: 15px;
+            color: var(--maroon-dark);
+            margin-bottom: 6px;
+        }
+
+        /* If you drop in a real photo, replace .image-slot with:
+     <img class="right-photo" src="your-image.jpg" alt="">  */
+        /* .right-photo{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+
+    
+  } */
+        .right-photo {
+            width: 320px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* ---------- ICON STRIP ---------- */
+        .icon-strip {
+            background: var(--cream);
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            padding: 18px 20px 8px;
+            flex-wrap: wrap;
+        }
+
+        .icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            max-width: 110px;
+        }
+
+        .icon-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 16px;
+        }
+
+        .icon-circle.gold {
+            background: var(--gold);
+        }
+
+        .icon-circle.maroon {
+            background: var(--maroon);
+        }
+
+        .icon-item span {
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            color: var(--maroon-dark);
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        /* ---------- BOTTOM STRIP ---------- */
+        .bottom-strip {
+            /* background: linear-gradient(90deg, var(--maroon-dark), var(--maroon)); */
+            background-color:#A2171A;
+            color: var(--gold-light);
+            text-align: center;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .bottom-strip::before {
+            content: "🏷️";
+            font-size: 14px;
+        }
+
+        /* ================================================
+     NEW: PROFILE / INFO CARD BELOW THE BANNER
+     ================================================ */
+        .profile-card {
+            width: 100%;
+            background: var(--white);
+            border-radius: 18px;
+            box-shadow: 0 20px 50px rgba(58, 13, 22, 0.15);
+            overflow: hidden;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 30px 34px 22px;
+        }
+
+        .profile-logo {
+            flex: 0 0 auto;
+            width: 104px;
+            height: 104px;
+            border-radius: 50%;
+            background: var(--cream);
+            border: 2px solid var(--gold);
+            outline: 1px solid var(--gold);
+            outline-offset: 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8px;
+        }
+
+        .profile-logo .bag-icon {
+            width: 26px;
+            height: 22px;
+            margin-bottom: 4px;
+        }
+
+        .profile-logo .bag-icon::before {
+            top: -8px;
+            width: 12px;
+            height: 10px;
+            border-width: 2px;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .profile-logo .bag-icon .heart {
+            font-size: 9px;
+        }
+
+        .profile-logo h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 11.5px;
+            color: var(--maroon-dark);
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            line-height: 1.1;
+        }
+
+        .profile-logo p {
+            font-size: 6.5px;
+            letter-spacing: 2px;
+            color: var(--gold);
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        .profile-info {
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        .profile-name {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            
+            font-size: 26px;
+            font-weight: 800;
+            color: #A2171A;
+        }
+
+        .verified-badge {
+            flex: 0 0 auto;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background:   #A2171A;
+            color: var(--white);
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-handle {
+            font-size: 13.5px;
+            color: #8a8a8a;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        .profile-category {
+            font-size: 12.5px;
+            color: #A2171A;
+            font-weight: 600;
+            margin-top: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .profile-category .dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--gold);
+        }
+
+        .profile-description {
+            font-size: 13px;
+            line-height: 1.55;
+            color: #333;
+            margin-top: 12px;
+            max-width: 640px;
+        }
+
+        .profile-icon-strip {
+            display: flex;
+            justify-content: center;
+            gap: 52px;
+            padding: 6px 20px 26px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid var(--cream-soft);
+        }
+
+        .profile-icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            max-width: 110px;
+        }
+
+        .profile-icon-circle {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 20px;
+        }
+
+        .profile-icon-circle.maroon {
+            background: var(--maroon);
+        }
+
+        .profile-icon-circle.gold {
+            background: var(--gold);
+        }
+
+        .profile-icon-item span {
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            color: var(--maroon-dark);
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .profile-contact-strip {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            padding: 16px 20px;
+            flex-wrap: wrap;
+        }
+
+        .profile-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12.5px;
+            font-weight: 600;
+             color: #A2171A;
+        }
+
+        .profile-contact-icon {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--cream);
+            color: var(--maroon);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 900px) {
+            .banner-top {
+                grid-template-columns: 1fr;
+            }
+
+            .right-panel {
+                min-height: 260px;
+            }
+
+            .center-panel {
+                order: -1;
+                padding: 26px 20px 6px;
+            }
+
+            .logo-badge {
+                width: 190px;
+                height: 190px;
+            }
+
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-category {
+                justify-content: center;
+            }
+
+            .profile-description {
+                max-width: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .banner {
+                border-radius: 12px;
+            }
+
+            .left-panel {
+                padding: 24px 20px;
+            }
+
+            .eyebrow {
+                font-size: 18px;
+            }
+
+            .icon-strip {
+                gap: 28px;
+            }
+
+            .logo-badge {
+                width: 160px;
+                height: 160px;
+            }
+
+            .logo-badge h1 {
+                font-size: 18px;
+            }
+
+            .logo-badge h2 {
+                font-size: 9px;
+                letter-spacing: 3px;
+            }
+
+            .profile-icon-strip {
+                gap: 22px;
+            }
+
+            .profile-contact-strip {
+                gap: 20px;
+            }
+        }
+
+
+        .profile-logo {
+            flex: 0 0 auto;
+            width: 104px;
+            height: 104px;
+            border-radius: 50%;
+            overflow: hidden;
+            /* Hides anything outside the circle */
+            background: #fff;
+            border: 2px solid var(--gold);
+            outline: 1px solid var(--gold);
+            outline-offset: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+
+        .profile-logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Fill the circle */
+            border-radius: 50%;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="page">
+
+        <div class="banner">
+
+            <div class="banner-top">
+
+                <!-- LEFT: features -->
+                <div class="left-panel">
+                    <div class="eyebrow">AVAILABLE<span> </span></div>
+
+                    <div class="feature-list">
+
+
+
+                        <div class="feature">
+                            <div class="feature-icon">💸</div>
+                            <div class="feature-text">
+                                <h4>GCASH CASH IN &amp; CASH OUT</h4>
+                                <p>Fast and secure GCash transactions</p>
+                            </div>
+                        </div>
+
+                        <div class="feature">
+                            <div class="feature-icon">📱</div>
+                            <div class="feature-text">
+                                <h4>LOAD</h4>
+                                <p>All network prepaid load available</p>
+                            </div>
+                        </div>
+
+                        <div class="feature">
+                            <div class="feature-icon">📚</div>
+                            <div class="feature-text">
+                                <h4>SCHOOL SUPPLIES &amp; CANNED GOODS</h4>
+                                <p>Everything you need in one place</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- CENTER: logo -->
+                <!-- <div class="center-panel">
+                    <div class="logo-badge">
+                        <div class="bag-icon"><span class="heart">♥</span></div>
+                        <h1>DAILY MART</h1>
+                        <h2>ONLINE</h2>
+                        <div class="divider"></div>
+                        <p class="tagline">Quality you trust,<br>style you love</p>
+                    </div>
+                </div> -->
+
+
+                <!-- RIGHT: your image goes here -->
+                <div class="right-panel" style="background-color:#A2171A">
+                    <!-- <div class="image-slot">
+          <strong>Your image here</strong>
+          Drop in a photo (e.g. model with shopping bags,<br>
+          clothing rack, product flat-lay) — this panel is<br>
+          sized 340px wide on desktop and fills the width<br>
+          on mobile.
+        </div> -->
+                    <img class="right-photo" src="img/br.png">
+                </div>
+
+            </div>
+
+            <!-- Icon strip -->
+            <!-- <div class="icon-strip">
+      <div class="icon-item">
+        <div class="icon-circle gold">🏅</div>
+        <span>PREMIUM QUALITY</span>
+      </div>
+      <div class="icon-item">
+        <div class="icon-circle maroon">🛡️</div>
+        <span>SAFE &amp; SECURE SHOPPING</span>
+      </div>
+      <div class="icon-item">
+        <div class="icon-circle gold">🚚</div>
+        <span>FAST &amp; RELIABLE DELIVERY</span>
+      </div>
+      
+    </div> -->
+
+
+
+            <!-- Bottom strip -->
+            <div class="bottom-strip">"BAHALAG GINAGMAY, BASTA KANUNAY"</div>
+
+        </div>
+
+        <!-- ================================================
+       NEW SECTION: PROFILE CARD BELOW THE BANNER
+       ================================================ -->
+        <div class="profile-card">
+
+            <div class="profile-header">
+                <!-- <div class="profile-logo">
+        <div class="bag-icon"><span class="heart">♥</span></div>
+        <h3>DAILY MART</h3>
+        <p>ONLINE</p>
+      </div> -->
+
+                <div class="profile-logo">
+                    <img src="img/logo.jpeg" alt="SHEKHINNAH" class="profile-logo-img">
+                </div>
+
+                <div class="profile-info">
+                    <div class="profile-name" style="font-family: 'Lilita One', cursive;">
+                        SHEKHINNAH
+                        <span class="verified-badge">✓</span>
+                    </div>
+
+
+                    <div class="profile-handle">@dailymart.online</div>
+                    <div class="profile-category" style="font-family: 'Magnolia Script', cursive;">
+                         <span class="dot"></span> Sari-Sari Store
+                    </div>
+                    <p class="profile-description">
+                        Your one-stop destination for branded suits, premium cosmetics &amp; daily routine all products.
+                        Quality you trust, style you love. 🤎
+                    </p>
+                </div>
+            </div>
+
+          
+
+            <div class="profile-contact-strip">
+                <div class="profile-contact-item">
+                    <div class="profile-contact-icon">📞</div>
+                    0918 408 7957
+
+                </div>
+                <div class="profile-contact-item">
+                    <div class="profile-contact-icon">📍</div>
+                    Philrads, Linao Ormoc City Leyte
+                </div>
+                <div class="profile-contact-item">
+                    <div class="profile-contact-icon">🕐</div>
+                    6AM - 11PM
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
