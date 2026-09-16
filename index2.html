@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dakingo | Online Bakery for Every Celebration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+    /* ===== Reset & base ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root{
+  --maroon: #8c1f2b;
+  --maroon-dark: #6e1620;
+  --red: #b7222c;
+  --red-light: #d94a4a;
+  --cream: #fdf1e9;
+  --cream-deep: #f6e3d3;
+  --pink-pale: #fbe2e2;
+  --ink: #3a1414;
+  --muted: #8a6b60;
+  --gold: #e9b949;
+}
+
+body{
+  font-family: 'Poppins', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { text-decoration: none; color: inherit; }
+button { font-family: inherit; cursor: pointer; border: none; }
+img { display: block; max-width: 100%; }
+
+/* ===== Header ===== */
+.site-header{
+  background: var(--pink-pale);
+  padding: 16px 6%;
+}
+.topbar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 14px;
+}
+.logo{
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--maroon);
+  flex-shrink: 0;
+}
+.search-wrap{
+  flex: 1;
+  max-width: 420px;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid #f0d3d3;
+}
+.search-wrap input{
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  background: transparent;
+}
+.search-btn{
+  background: var(--maroon);
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 3px;
+}
+.topbar-right{
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-shrink: 0;
+}
+.icon-btn{
+  background: none;
+  color: var(--maroon);
+  display: flex;
+}
+.login-link{
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.mainnav{
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--maroon-dark);
+  flex-wrap: wrap;
+}
+.nav-cta{
+  margin-left: auto;
+  background: var(--maroon);
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 22px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* ===== Hero ===== */
+.hero{
+  background: linear-gradient(135deg, var(--red) 0%, var(--maroon-dark) 100%);
+  padding: 46px 6% 70px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before{
+  content:"";
+  position: absolute;
+  top: -60px; right: 12%;
+  width: 220px; height: 220px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 50%;
+}
+.hero-inner{
+  display: grid;
+  grid-template-columns: 1fr 1.3fr auto;
+  align-items: center;
+  gap: 32px;
+  position: relative;
+}
+.hero-photo{
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  border: 6px solid rgba(255,255,255,0.5);
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+}
+.hero-photo img{ width: 100%; height: 100%; object-fit: cover; }
+.hero-copy h1{
+  font-family: 'Playfair Display', serif;
+  font-size: 2.6rem;
+  line-height: 1.12;
+  color: #fff;
+  font-weight: 700;
+}
+.hero-copy .script{
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: var(--gold);
+  font-size: 1.4rem;
+  margin-top: -6px;
+}
+.hero-sub{
+  color: #f6dede;
+  margin-top: 10px;
+  font-size: 1rem;
+}
+.offer-pill{
+  margin-top: 22px;
+  display: inline-flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+.offer-label{
+  font-size: 0.7rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+.offer-value{
+  color: var(--maroon);
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+.hero-thumbs{
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.thumb-circle{
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  overflow: hidden;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.25);
+}
+.thumb-circle img{ width: 100%; height: 100%; object-fit: cover; }
+
+/* ===== Panel: menu + bestsellers ===== */
+.panel{
+  background: var(--cream);
+  border-radius: 34px 34px 0 0;
+  margin-top: -34px;
+  position: relative;
+  padding: 44px 6% 10px;
+}
+.menu-block{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.menu-heading h2{
+  font-family: 'Playfair Display', serif;
+  color: var(--maroon);
+  font-size: 2rem;
+}
+.menu-heading p{
+  color: var(--muted);
+  margin-top: 4px;
+  font-size: 0.95rem;
+}
+.menu-icons-small{
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+.dot-icon{
+  width: 34px; height: 34px;
+  background: #fff;
+  border: 1px solid var(--cream-deep);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+}
+.menu-cards{
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.menu-card{
+  width: 108px;
+  height: 92px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(140,31,43,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--maroon-dark);
+  letter-spacing: 0.4px;
+}
+.menu-card-icon{ font-size: 1.5rem; }
+
+.bestsellers-block h2{
+  font-family: 'Playfair Display', serif;
+  color: var(--maroon);
+  font-size: 1.6rem;
+  margin-bottom: 22px;
+}
+.product-grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.product-card{
+  background: #fff;
+  border-radius: 18px;
+  padding: 14px;
+  position: relative;
+  box-shadow: 0 6px 16px rgba(140,31,43,0.06);
+}
+.product-img{
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  aspect-ratio: 5/4;
+  margin-bottom: 12px;
+}
+.product-img img{ width: 100%; height: 100%; object-fit: cover; }
+.heart-btn{
+  position: absolute;
+  top: 10px; left: 10px;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--red);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.product-card h3{
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.3;
+  min-height: 2.4em;
+}
+.price{
+  margin-top: 6px;
+  font-weight: 700;
+  color: var(--maroon-dark);
+}
+.price .strike{
+  font-weight: 400;
+  color: var(--muted);
+  text-decoration: line-through;
+  font-size: 0.82rem;
+  margin-left: 6px;
+}
+.rating{
+  margin-top: 4px;
+  color: var(--gold);
+  font-size: 0.8rem;
+}
+.rating span{ color: var(--muted); margin-left: 4px; }
+.add-btn{
+  position: absolute;
+  bottom: 14px; right: 14px;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--maroon);
+  color: #fff;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+.view-all-wrap{
+  text-align: center;
+  margin: 34px 0 50px;
+}
+.view-all-btn{
+  background: var(--maroon);
+  color: #fff;
+  padding: 12px 30px;
+  border-radius: 22px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.4px;
+}
+
+/* ===== Our Promise ===== */
+.promise{
+  background: var(--cream);
+  padding: 20px 6% 60px;
+}
+.promise h2{
+  font-family: 'Playfair Display', serif;
+  color: var(--maroon);
+  font-size: 2rem;
+}
+.promise-sub{
+  color: var(--muted);
+  margin-top: 6px;
+  margin-bottom: 30px;
+}
+.promise-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+.promise-left{
+  background: var(--pink-pale);
+  border-radius: 20px;
+  padding: 28px;
+}
+.promise-strap{
+  color: var(--maroon-dark);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+.stat-grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.stat{
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+.stat-icon{ font-size: 1.4rem; margin-bottom: 4px; }
+.stat strong{ font-size: 0.85rem; color: var(--maroon-dark); }
+.stat span{ font-size: 0.68rem; color: var(--muted); letter-spacing: 0.3px; }
+
+.ticket-banner{
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.ticket-icon{ font-size: 2.2rem; }
+.ticket-copy{ flex: 1; min-width: 180px; }
+.ticket-copy h3{
+  font-size: 0.95rem;
+  color: var(--maroon-dark);
+  margin-bottom: 4px;
+}
+.ticket-copy p{
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+.unlock-btn{
+  background: var(--maroon);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 18px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.social-row{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.social-avatars{ display: flex; }
+.social-avatars img{
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  border: 2px solid var(--pink-pale);
+  object-fit: cover;
+  margin-left: -10px;
+}
+.social-avatars img:first-child{ margin-left: 0; }
+.social-row span{ font-size: 0.85rem; color: var(--maroon-dark); font-weight: 500; }
+
+.promise-gallery{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.gallery-item{
+  border-radius: 14px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+}
+.gallery-item img{ width: 100%; height: 100%; object-fit: cover; }
+
+/* ===== Trust strip ===== */
+.trust-strip{
+  background: var(--maroon);
+  padding: 22px 6%;
+  text-align: center;
+}
+.trust-strip p{
+  color: #fff;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+}
+
+/* ===== Footer ===== */
+.site-footer{
+  background: var(--cream);
+  padding: 46px 6% 30px;
+}
+.footer-grid{
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+.footer-brand h3{
+  font-family: 'Playfair Display', serif;
+  color: var(--maroon);
+  font-size: 1.5rem;
+  margin-bottom: 14px;
+}
+.footer-brand a, .footer-col a{
+  display: block;
+  color: var(--muted);
+  font-size: 0.82rem;
+  margin-bottom: 10px;
+}
+.footer-col h4{
+  color: var(--maroon-dark);
+  font-size: 0.85rem;
+  margin-bottom: 14px;
+}
+.footer-subscribe{
+  display: flex;
+  gap: 10px;
+  max-width: 420px;
+  margin: 0 auto 20px;
+}
+.footer-subscribe input{
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--cream-deep);
+  outline: none;
+  font-size: 0.85rem;
+}
+.footer-subscribe button{
+  background: var(--maroon);
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+.footer-help{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--maroon-dark);
+  font-size: 0.82rem;
+}
+.help-icon{ font-size: 1rem; }
+
+/* ===== Responsive ===== */
+@media (max-width: 900px){
+  .hero-inner{ grid-template-columns: 1fr; text-align: center; }
+  .hero-photo{ margin: 0 auto; }
+  .hero-thumbs{ flex-direction: row; justify-content: center; }
+  .product-grid{ grid-template-columns: repeat(2, 1fr); }
+  .promise-grid{ grid-template-columns: 1fr; }
+  .footer-grid{ grid-template-columns: repeat(2, 1fr); }
+  .mainnav{ gap: 14px; }
+}
+
+@media (max-width: 560px){
+  .topbar{ flex-wrap: wrap; }
+  .search-wrap{ order: 3; max-width: 100%; }
+  .hero-copy h1{ font-size: 1.9rem; }
+  .product-grid{ grid-template-columns: 1fr 1fr; gap: 12px; }
+  .stat-grid{ grid-template-columns: repeat(2, 1fr); }
+  .footer-grid{ grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="topbar">
+    <a href="#" class="logo">Dakingo</a>
+    <div class="search-wrap">
+      <input type="text" placeholder="Search for cakes, desserts...">
+      <button class="search-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M21.71 20.29l-5.4-5.39A8 8 0 1 0 14 16.3l5.39 5.4zM4 10a6 6 0 1 1 6 6a6 6 0 0 1-6-6"/></svg>
+      </button>
+    </div>
+    <div class="topbar-right">
+      <button class="icon-btn" aria-label="Cart">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M7 18a2 2 0 1 0 2 2a2 2 0 0 0-2-2M1 2v2h2l3.6 7.59l-1.35 2.45A2 2 0 0 0 7 17h12v-2H7l1.1-2h7.45a2 2 0 0 0 1.75-1.03L21.7 4.96A1 1 0 0 0 20.83 3.5H5.21L4.27 1.5H1zM17 18a2 2 0 1 0 2 2a2 2 0 0 0-2-2"/></svg>
+      </button>
+      <a href="#" class="login-link">Login/Signup</a>
+    </div>
+  </div>
+  <nav class="mainnav">
+    <a href="#">Cakes</a>
+    <a href="#">Theme Cakes</a>
+    <a href="#">Desserts</a>
+    <a href="#">Birthday</a>
+    <a href="#">Hampers</a>
+    <a href="#">Anniversary</a>
+    <a href="#">Occasions</a>
+    <a href="#">Occasions</a>
+    <a href="#" class="nav-cta">ORDER NOW</a>
+  </nav>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-photo">
+      <img src="https://picsum.photos/seed/dakingo-hero/520/520" alt="Decadent chocolate berry cake">
+    </div>
+    <div class="hero-copy">
+      <h1>DECADENT<br>CHOCOLATE<br>BLISS!</h1>
+      <p class="script">Indulge</p>
+      <p class="hero-sub">Satisfy Your Sweet Cravings</p>
+      <div class="offer-pill">
+        <span class="offer-label">Special Offer</span>
+        <span class="offer-value">SAVE 20%</span>
+      </div>
+    </div>
+    <div class="hero-thumbs">
+      <div class="thumb-circle"><img src="https://picsum.photos/seed/dakingo-thumb1/160/160" alt="Chocolate mini cake"></div>
+      <div class="thumb-circle"><img src="https://picsum.photos/seed/dakingo-thumb2/160/160" alt="Chocolate hazelnut slice"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MENU + BESTSELLERS PANEL ===== -->
+<section class="panel">
+
+  <div class="menu-block">
+    <div class="menu-heading">
+      <h2>Menu</h2>
+      <p>What will you wish for?</p>
+      <div class="menu-icons-small">
+        <span class="dot-icon">🎂</span>
+        <span class="dot-icon">🧁</span>
+        <span class="dot-icon">🍰</span>
+      </div>
+    </div>
+    <div class="menu-cards">
+      <div class="menu-card">
+        <span class="menu-card-icon">🎉</span>
+        <span>CLASSIC</span>
+      </div>
+      <div class="menu-card">
+        <span class="menu-card-icon">🍩</span>
+        <span>GOURMET</span>
+      </div>
+      <div class="menu-card">
+        <span class="menu-card-icon">🏠</span>
+        <span>DESSERTS</span>
+      </div>
+      <div class="menu-card">
+        <span class="menu-card-icon">🍪</span>
+        <span>COOKIES</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bestsellers-block">
+    <h2>Bestsellers from Across the Country</h2>
+    <div class="product-grid">
+
+      <article class="product-card">
+        <div class="product-img">
+          <img src="https://picsum.photos/seed/dakingo-p1/300/240" alt="Rich Chocolate Truffle Cake">
+          <button class="heart-btn" aria-label="Save">♥</button>
+        </div>
+        <h3>Rich Chocolate Truffle Cake</h3>
+        <p class="price">₹500 <span class="strike">₹600</span></p>
+        <p class="rating">★★★★☆ <span>309</span></p>
+        <button class="add-btn">+</button>
+      </article>
+
+      <article class="product-card">
+        <div class="product-img">
+          <img src="https://picsum.photos/seed/dakingo-p2/300/240" alt="Choco Chip Truffle Cake">
+          <button class="heart-btn" aria-label="Save">♥</button>
+        </div>
+        <h3>Choco Chip Truffle Cake</h3>
+        <p class="price">₹509 <span class="strike">₹599</span></p>
+        <p class="rating">★★★★☆ <span>566</span></p>
+        <button class="add-btn">+</button>
+      </article>
+
+      <article class="product-card">
+        <div class="product-img">
+          <img src="https://picsum.photos/seed/dakingo-p3/300/240" alt="Tropical Fruit N Almond Cake">
+          <button class="heart-btn" aria-label="Save">♥</button>
+        </div>
+        <h3>Tropical Fruit N Almond Cake</h3>
+        <p class="price">₹509 <span class="strike">₹599</span></p>
+        <p class="rating">★★★★★ <span>318</span></p>
+        <button class="add-btn">+</button>
+      </article>
+
+      <article class="product-card">
+        <div class="product-img">
+          <img src="https://picsum.photos/seed/dakingo-p4/300/240" alt="Rich Butterscotch Crunch Cake">
+          <button class="heart-btn" aria-label="Save">♥</button>
+        </div>
+        <h3>Rich Butterscotch Crunch Carte Cake</h3>
+        <p class="price">₹399 <span class="strike">₹470</span></p>
+        <p class="rating">★★★★☆ <span>508</span></p>
+        <button class="add-btn">+</button>
+      </article>
+
+    </div>
+    <div class="view-all-wrap">
+      <button class="view-all-btn">VIEW ALL</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== OUR PROMISE ===== -->
+<section class="promise">
+  <h2>Our Promise</h2>
+  <p class="promise-sub">There's no secret spell – only honest hard work!</p>
+
+  <div class="promise-grid">
+    <div class="promise-left">
+      <p class="promise-strap">A glimpse of our secret spell – only honest work!</p>
+      <div class="stat-grid">
+        <div class="stat">
+          <span class="stat-icon">🚚</span>
+          <strong>ON-TIME</strong>
+          <span>DELIVERY</span>
+        </div>
+        <div class="stat">
+          <span class="stat-icon">🚛</span>
+          <strong>500+</strong>
+          <span>DESIGNS</span>
+        </div>
+        <div class="stat">
+          <span class="stat-icon">⏱</span>
+          <strong>2 CR+</strong>
+          <span>ORDERS</span>
+        </div>
+        <div class="stat">
+          <span class="stat-icon">🎂</span>
+          <strong>BAKED</strong>
+          <span>FRESH</span>
+        </div>
+      </div>
+
+      <div class="ticket-banner">
+        <div class="ticket-icon">🎟️</div>
+        <div class="ticket-copy">
+          <h3>THE MAGICAL TICKET</h3>
+          <p>Add 3 reminders in your account.<br>Win offers worth Rs. 750</p>
+        </div>
+        <button class="unlock-btn">UNLOCK NOW</button>
+      </div>
+
+      <div class="social-row">
+        <div class="social-avatars">
+          <img src="https://picsum.photos/seed/social1/60/60" alt="">
+          <img src="https://picsum.photos/seed/social2/60/60" alt="">
+          <img src="https://picsum.photos/seed/social3/60/60" alt="">
+          <img src="https://picsum.photos/seed/social4/60/60" alt="">
+          <img src="https://picsum.photos/seed/social5/60/60" alt="">
+        </div>
+        <span>Follow us on social!</span>
+      </div>
+    </div>
+
+    <div class="promise-gallery">
+      <div class="gallery-item"><img src="https://picsum.photos/seed/gal1/300/220" alt="Wedding cake"></div>
+      <div class="gallery-item"><img src="https://picsum.photos/seed/gal2/300/220" alt="Baker with cake"></div>
+      <div class="gallery-item"><img src="https://picsum.photos/seed/gal3/300/220" alt="Perfect cake finish"></div>
+      <div class="gallery-item"><img src="https://picsum.photos/seed/gal4/300/220" alt="Customer smiling"></div>
+      <div class="gallery-item"><img src="https://picsum.photos/seed/gal5/300/220" alt="Cake delivery"></div>
+      <div class="gallery-item"><img src="https://picsum.photos/seed/gal6/300/220" alt="Celebration cake"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRUST STRIP ===== -->
+<section class="trust-strip">
+  <p>Dakingo – Your Trusted FSSAI Certified Online Bakery for Every Celebration</p>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>Dakingo</h3>
+      <a href="#">Our Story</a>
+      <a href="#">Contact Us</a>
+      <a href="#">Locate a Store</a>
+      <a href="#">Wholesale</a>
+      <a href="#">Careers</a>
+    </div>
+    <div class="footer-col">
+      <h4>Know Us</h4>
+      <a href="#">Contact Us</a>
+      <a href="#">Blog</a>
+    </div>
+    <div class="footer-col">
+      <h4>Need Help</h4>
+      <a href="#">Cancellation And Refund</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+    <div class="footer-col">
+      <h4>More Info</h4>
+      <a href="#">Terms And Policy</a>
+      <a href="#">Customer Grievance</a>
+    </div>
+    <div class="footer-col">
+      <h4>More Info</h4>
+      <a href="#">Coupons &amp; Offers</a>
+      <a href="#">Download App</a>
+    </div>
+  </div>
+  <div class="footer-subscribe">
+    <input type="email" placeholder="Enter Email Address">
+    <button>SUBSCRIBE</button>
+  </div>
+  <div class="footer-help">
+    <span class="help-icon">🕐</span>
+    <span>Hey, need any help?</span>
+  </div>
+</footer>
+
+</body>
+</html>

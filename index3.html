@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Croffy — warm pastry, soft moments.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+    /* ============ Tokens ============ */
+:root{
+  --bg: #f6e3c8;
+  --cream: #fdf5e8;
+  --cream-soft: #faeed9;
+  --tan: #e9c99a;
+  --accent: #dc9a4f;
+  --accent-dark: #c8823a;
+  --accent-deep: #a8631f;
+  --brown: #6f4a2b;
+  --brown-dark: #4a3018;
+  --brown-soft: #9c7a56;
+  --line: #eddcc0;
+  --white: #fffaf2;
+
+  --font-display: 'Baloo 2', sans-serif;
+  --font-body: 'Nunito', sans-serif;
+}
+
+*{ box-sizing: border-box; }
+
+body{
+  margin:0;
+  padding: 28px 16px;
+  background: var(--bg);
+  background-image:
+    radial-gradient(circle at 8% 10%, rgba(255,255,255,0.35), transparent 40%),
+    radial-gradient(circle at 95% 85%, rgba(255,255,255,0.25), transparent 45%);
+  font-family: var(--font-body);
+  color: var(--brown);
+  display:flex;
+  justify-content:center;
+}
+
+/* ============ Board Layout ============ */
+.board{
+  width:100%;
+  max-width: 1080px;
+  display:grid;
+  grid-template-columns: 230px 1fr 190px;
+  gap: 18px;
+  align-items:start;
+}
+
+.panel{
+  background: var(--cream);
+  border-radius: 26px;
+  padding: 22px 20px;
+  box-shadow: 0 6px 0 rgba(178,131,74,0.12);
+  position: relative;
+}
+
+/* ============ Left Sidebar ============ */
+.brand-panel{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap: 6px;
+  padding-bottom: 20px;
+}
+
+.mascot-svg{ width: 128px; height: auto; margin-top: 4px; }
+
+.curl{ fill: var(--accent); }
+.c1{ fill: var(--tan); }
+.c3{ fill: var(--tan); }
+.bear-face{ fill: var(--white); stroke: var(--brown-dark); stroke-width: 3; }
+.bear-face-small{ stroke-width: 2.5; }
+.ear, .ear-small{ fill: var(--white); stroke: var(--brown-dark); stroke-width: 2.5; }
+.muzzle{ fill: #fff; opacity: .9; }
+.eye{ fill: var(--brown-dark); }
+.nose{ fill: var(--brown-dark); }
+.mouth{ fill:none; stroke: var(--brown-dark); stroke-width: 2; stroke-linecap: round; }
+
+.logo{
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2.1rem;
+  color: var(--brown-dark);
+  margin: 4px 0 2px;
+  letter-spacing: 0.5px;
+}
+.logo.small{ font-size: 1.5rem; margin-top: 6px; }
+
+.tiny-divider{
+  display:flex;
+  align-items:center;
+  gap: 5px;
+  color: var(--tan);
+  font-size: 0.7rem;
+  margin: 8px 0 10px;
+}
+.mini-croissant{ font-size: 0.85rem; }
+
+.tagline{
+  color: var(--brown-soft);
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  margin: 0 0 6px;
+}
+
+.heart{
+  color: var(--accent);
+  font-size: 1rem;
+  margin-bottom: 18px;
+}
+
+.nav{
+  width: 100%;
+  display:flex;
+  flex-direction:column;
+  border-top: 1px solid var(--line);
+}
+.nav-item{
+  display:flex;
+  align-items:center;
+  gap: 12px;
+  padding: 13px 6px;
+  text-decoration:none;
+  color: var(--brown-soft);
+  font-weight: 700;
+  font-size: 1rem;
+  border-bottom: 1px solid var(--line);
+  text-align:left;
+  transition: color .15s ease;
+}
+.nav-icon{ font-size: 1.05rem; width: 22px; text-align:center; }
+.nav-item.active{ color: var(--brown-dark); }
+.nav-item:hover{ color: var(--accent-deep); }
+
+.thanks-card{
+  margin-top: 20px;
+  width: 100%;
+  background: var(--accent);
+  color: var(--white);
+  border-radius: 20px;
+  padding: 14px 16px;
+  display:flex;
+  align-items:center;
+  gap: 12px;
+  text-align:left;
+}
+.thanks-bear{ font-size: 1.6rem; }
+.thanks-card strong{ font-family: var(--font-display); font-size: 1rem; display:block; }
+.thanks-card p{ margin: 2px 0 0; font-size: 0.8rem; opacity: .95; }
+
+/* ============ Center Column ============ */
+.center-col{
+  display:flex;
+  flex-direction:column;
+  gap: 18px;
+}
+
+.section-tag{
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 6px 22px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.menu-panel{ padding-top: 32px; }
+
+.row-decor{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap: 10px;
+  color: var(--tan);
+  font-size: 0.85rem;
+  margin-bottom: 14px;
+}
+.croissant-mark{ font-size: 1rem; }
+
+.menu-list{
+  list-style:none;
+  margin:0; padding:0;
+}
+.menu-list li{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding: 15px 4px;
+  border-bottom: 1px solid var(--line);
+}
+.menu-list li:last-child{ border-bottom:none; }
+.menu-list h3{
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  margin: 0 0 3px;
+  color: var(--brown-dark);
+  font-weight: 700;
+}
+.menu-list p{
+  margin:0;
+  font-size: 0.82rem;
+  color: var(--brown-soft);
+}
+.price{
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--brown-dark);
+}
+
+.specials-panel{ padding-top: 32px; }
+.sparkle{
+  position:absolute; top: 20px; right: 22px;
+  color: var(--accent); font-size: 1rem;
+}
+.peek-bear{
+  position:absolute; bottom: -14px; right: 24px;
+  font-size: 1.8rem;
+}
+.peek-bear.small{ bottom:-12px; right: 30px; font-size:1.5rem; }
+
+.specials-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 6px;
+}
+.special-card{
+  background: var(--cream-soft);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 12px;
+  text-align:center;
+  position: relative;
+}
+.badge{
+  position:absolute;
+  top: 8px; left: 8px;
+  font-size: 0.6rem;
+  font-weight: 800;
+  text-transform: lowercase;
+  padding: 2px 8px;
+  border-radius: 10px;
+  color: var(--white);
+}
+.badge-hot{ background: var(--accent-deep); }
+.badge-new{ background: #c98c4a; }
+
+.special-img{
+  width: 100%;
+  height: 64px;
+  border-radius: 12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+.strawberry{ background: linear-gradient(160deg,#f7c9c9,#f6e2c4); }
+.chocolate{ background: linear-gradient(160deg,#caa06e,#8a5a2b); }
+.cheesecake{ background: linear-gradient(160deg,#f2d9ad,#d9a95f); }
+
+.special-card h4{
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  margin: 2px 0 2px;
+  color: var(--brown-dark);
+  font-weight: 700;
+}
+.special-card p{
+  margin:0 0 8px;
+  font-size: 0.72rem;
+  color: var(--brown-soft);
+}
+.s-price{
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--brown-dark);
+  font-size: 1rem;
+}
+
+.drinks-panel{ padding: 20px; }
+.drinks-grid{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.drink-col h5{
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  color: var(--brown-dark);
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+.drink-col ul{
+  list-style:none;
+  margin:0; padding:0;
+}
+.drink-col li{
+  display:flex;
+  justify-content:space-between;
+  gap: 6px;
+  font-size: 0.68rem;
+  color: var(--brown-soft);
+  padding: 4px 0;
+  border-bottom: 1px dashed var(--line);
+}
+.drink-col li span:first-child{ flex:1; }
+.drink-col.signature{
+  background: var(--tan);
+  border-radius: 14px;
+  padding: 10px;
+  margin: -10px 0;
+}
+.drink-col.signature h5,
+.drink-col.signature li{ color: var(--brown-dark); }
+.drink-col.signature li{ border-color: rgba(111,74,43,0.2); }
+
+/* ============ Right Sidebar ============ */
+.right-col{
+  display:flex;
+  flex-direction:column;
+  gap: 18px;
+}
+.side-card{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap: 4px;
+  padding: 24px 12px;
+}
+.side-card.filled{
+  background: var(--accent);
+  color: var(--white);
+}
+.side-icon{
+  font-size: 1.8rem;
+  margin-bottom: 6px;
+}
+.side-text{
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.3;
+  margin: 0;
+  color: var(--brown-dark);
+}
+.filled .side-text{ color: var(--white); }
+.accent{ color: var(--accent-deep); }
+.filled .accent{ color: #fff2df; }
+.small-heart{ margin-top: 8px; color: var(--accent); }
+
+.hours{
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--accent-deep);
+  font-size: 1.15rem;
+  margin: 2px 0;
+}
+.hour-sep{ color: var(--brown-soft); font-size: 0.8rem; }
+
+.sign-off{
+  background: var(--cream-soft);
+}
+.mini-svg{ width: 84px; }
+
+/* ============ Responsive ============ */
+@media (max-width: 880px){
+  .board{
+    grid-template-columns: 1fr;
+  }
+  .right-col{
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .right-col .panel{ flex: 1 1 45%; }
+  .specials-grid{ grid-template-columns: 1fr 1fr; }
+  .drinks-grid{ grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 480px){
+  .specials-grid{ grid-template-columns: 1fr; }
+  .drinks-grid{ grid-template-columns: 1fr; }
+  .right-col .panel{ flex: 1 1 100%; }
+}
+</style>
+</head>
+<body>
+
+<div class="board">
+
+  <!-- ================= LEFT SIDEBAR ================= -->
+  <aside class="panel brand-panel">
+    <div class="mascot" aria-hidden="true">
+    
+      <img src="img/logo.jpeg" class="mascot-svg">
+    </div>
+
+    <h1 class="logo">SHEKHINNAH</h1>
+
+    <div class="tiny-divider">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      <span class="mini-croissant">🥐</span>
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    </div>
+
+    <p class="tagline">warm pastry,<br>soft moments.</p>
+    <div class="heart">♥</div>
+
+    <nav class="nav">
+      <a href="#menu" class="nav-item active"><span class="nav-icon">🏠</span>menu</a>
+      <a href="#pastries" class="nav-item"><span class="nav-icon">🥐</span>pastries</a>
+      <a href="#desserts" class="nav-item"><span class="nav-icon">🍰</span>desserts</a>
+      <a href="#drinks" class="nav-item"><span class="nav-icon">🥤</span>drinks</a>
+      <a href="#about" class="nav-item"><span class="nav-icon">♡</span>about</a>
+    </nav>
+
+    <div class="thanks-card">
+      <span class="thanks-bear">🐻</span>
+      <div>
+        <strong>thank you!</strong>
+        <p>have a cozy day ♥</p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ================= CENTER COLUMN ================= -->
+  <main class="center-col">
+
+    <section class="panel menu-panel" id="menu">
+      <div class="section-tag"><span>main menu</span></div>
+      <div class="row-decor">
+        <span class="dots">• • •</span>
+        <span class="croissant-mark">🥐</span>
+        <span class="dots">• • •</span>
+      </div>
+
+      <ul class="menu-list">
+        <li>
+          <div>
+            <h3>classic croissant</h3>
+            <p>buttery, flaky, golden</p>
+          </div>
+          <span class="price">3.8</span>
+        </li>
+        <li>
+          <div>
+            <h3>pain au chocolat</h3>
+            <p>rich chocolate, soft layers</p>
+          </div>
+          <span class="price">4.3</span>
+        </li>
+        <li>
+          <div>
+            <h3>almond croissant</h3>
+            <p>almond cream, toasted almonds</p>
+          </div>
+          <span class="price">4.8</span>
+        </li>
+        <li>
+          <div>
+            <h3>cream cheese bun</h3>
+            <p>soft bun, sweet cream cheese</p>
+          </div>
+          <span class="price">3.5</span>
+        </li>
+        <li>
+          <div>
+            <h3>honey butter roll</h3>
+            <p>soft &amp; fluffy, honey butter</p>
+          </div>
+          <span class="price">3.6</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="panel specials-panel" id="pastries">
+      <div class="section-tag"><span>today's specials</span></div>
+      <span class="sparkle">✦</span>
+      <span class="peek-bear">🐻</span>
+
+      <div class="specials-grid">
+        <article class="special-card">
+          <span class="badge badge-hot">hot</span>
+          <div class="special-img strawberry">🍰</div>
+          <h4>strawberry shortcake</h4>
+          <p>fresh &amp; light</p>
+          <span class="s-price">5.5</span>
+        </article>
+        <article class="special-card">
+          <span class="badge badge-new">new</span>
+          <div class="special-img chocolate">🍫</div>
+          <h4>chocolate ganache</h4>
+          <p>rich &amp; smooth</p>
+          <span class="s-price">6.5</span>
+        </article>
+        <article class="special-card">
+          <span class="badge badge-new">new</span>
+          <div class="special-img cheesecake">🍮</div>
+          <h4>basque cheesecake</h4>
+          <p>creamy &amp; caramelized</p>
+          <span class="s-price">4.5</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel drinks-panel" id="drinks">
+      <div class="drinks-grid">
+        <div class="drink-col">
+          <h5>non-coffee</h5>
+          <ul>
+            <li><span>matcha latte</span><span>3.2</span></li>
+            <li><span>strawberry latte</span><span>3.5</span></li>
+            <li><span>vanilla milk</span><span>2.8</span></li>
+            <li><span>milk tea</span><span>3.0</span></li>
+            <li><span>cocoa milk</span><span>3.1</span></li>
+          </ul>
+        </div>
+        <div class="drink-col">
+          <h5>coffee</h5>
+          <ul>
+            <li><span>americano</span><span>2.5</span></li>
+            <li><span>latte</span><span>3.0</span></li>
+            <li><span>flat white</span><span>3.2</span></li>
+            <li><span>hazelnut latte</span><span>3.6</span></li>
+            <li><span>cappuccino</span><span>3.0</span></li>
+            <li><span>espresso</span><span>2.2</span></li>
+          </ul>
+        </div>
+        <div class="drink-col">
+          <h5>ade &amp; tea</h5>
+          <ul>
+            <li><span>lemon ade</span><span>3.3</span></li>
+            <li><span>grapefruit ade</span><span>3.3</span></li>
+            <li><span>peach iced tea</span><span>3.2</span></li>
+            <li><span>green tea</span><span>2.7</span></li>
+            <li><span>black tea</span><span>2.7</span></li>
+            <li><span>chamomile tea</span><span>2.8</span></li>
+          </ul>
+        </div>
+        <div class="drink-col signature">
+          <h5>signature drinks</h5>
+          <ul>
+            <li><span>croffy cream latte</span><span></span></li>
+            <li><span>honey cloud latte</span><span></span></li>
+            <li><span>sleepy bear mocha</span><span></span></li>
+            <li><span>croissant cream latte</span><span></span></li>
+            <li><span>caramel croffy shake</span><span></span></li>
+            <li><span>peach bloom</span><span></span></li>
+            <li><span>cozy latte</span><span></span></li>
+          </ul>
+        </div>
+      </div>
+      <span class="peek-bear small">🐻</span>
+    </section>
+  </main>
+
+  <!-- ================= RIGHT SIDEBAR ================= -->
+  <aside class="right-col">
+
+    <div class="panel side-card">
+      <div class="side-icon shop">🏪</div>
+      <p class="side-text">baked with<br><span class="accent">love</span><br>everyday</p>
+      <span class="heart small-heart">♥</span>
+    </div>
+
+    <div class="panel side-card filled">
+      <div class="side-icon bag">🛍️</div>
+      <p class="side-text">takeout<br>available</p>
+    </div>
+
+    <div class="panel side-card">
+      <div class="side-icon clock">🕗</div>
+      <p class="side-text">open daily</p>
+      <p class="hours">08:00</p>
+      <span class="hour-sep">—</span>
+      <p class="hours">20:00</p>
+    </div>
+
+    <div class="panel side-card sign-off" id="about">
+      <div class="mini-mascot" aria-hidden="true">
+        <svg viewBox="0 0 120 100" class="mini-svg">
+          <ellipse cx="30" cy="30" rx="20" ry="16" class="curl c1"/>
+          <ellipse cx="55" cy="18" rx="22" ry="17" class="curl c2"/>
+          <ellipse cx="82" cy="28" rx="19" ry="15" class="curl c3"/>
+          <circle cx="60" cy="55" r="30" class="bear-face"/>
+          <ellipse cx="42" cy="38" rx="8" ry="7" class="ear"/>
+          <ellipse cx="78" cy="38" rx="8" ry="7" class="ear"/>
+          <ellipse cx="60" cy="64" rx="12" ry="9" class="muzzle"/>
+          <circle cx="50" cy="52" r="2.6" class="eye"/>
+          <circle cx="70" cy="52" r="2.6" class="eye"/>
+        </svg>
+      </div>
+      <h2 class="logo small">Croffy</h2>
+      <p class="side-text">thank you!</p>
+      <div class="heart">♥</div>
+    </div>
+  </aside>
+
+</div>
+
+</body>
+</html>
